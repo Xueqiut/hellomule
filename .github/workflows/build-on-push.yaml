@@ -38,6 +38,7 @@ jobs:
            "password": "${{ secrets.mule_nexus_password }}"
           }]
     
+    # securekey and env are environment specific
     - name: Build with Maven
       run: mvn -B -Dsecurekey=${{ secrets.securekey }} -Denv=dev install package --file pom.xml
     
@@ -59,6 +60,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    
+    # will need to checkout the POM file so and other dependencies so that mvn an work properly
+    - uses: actions/checkout@v2
+    
+    - uses: actions/cache@v1
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-
     
     - uses: actions/download-artifact@master
       with:
