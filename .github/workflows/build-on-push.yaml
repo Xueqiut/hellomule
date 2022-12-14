@@ -74,13 +74,13 @@ jobs:
       with:
         name: artifacts
     
-    - name: Deploy to Sandbox
+    - name: Deploy to Dev
       run: |
         artifactName=$(ls *.jar | head -1)
         mvn deploy -DmuleDeploy \
          -Dmule.artifact=$artifactName \
          -DconnectedApp.clientId="${{ secrets.connected_app_clientid }}" \
          -DconnectedApp.secret="${{ secrets.connected_app_secret }}" \
-         -Denv=Sandbox \
-         -Ddecryption.key="${{ secrets.secretkey }}" \
+         -Denv=Dev \
+         -Dsecretkey="${{ secrets.secretkey }}" \
          -DskipTests
