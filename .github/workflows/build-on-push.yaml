@@ -81,6 +81,6 @@ jobs:
          -Dmule.artifact=$artifactName \
          -DconnectedApp.clientId="${{ secrets.connected_app_clientid }}" \
          -DconnectedApp.secret="${{ secrets.connected_app_secret }}" \
-         -Denv=dev \
+         -Denv=DEV \
          -Dsecretkey="${{ secrets.secretkey }}" \
          -DskipTests
