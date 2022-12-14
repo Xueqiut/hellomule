@@ -13,6 +13,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
+		<app.name>hellomule</app.name>
 		<app.runtime>4.4.0-20220824</app.runtime>
 		<mule.maven.plugin.version>3.8.0</mule.maven.plugin.version>
 		<munit.version>2.3.13</munit.version>
@@ -53,19 +54,21 @@
 						</formats>
 					</coverage>
 					<cloudHubDeployment>
-				    	<uri>https://anypoint.mulesoft.com</uri>;
-				    	<muleVersion>${app.runtime}</muleVersion>
-				    	<username>${anypoint.username}</username>
-				    	<password>${anypoint.password}</password>
-				    	<applicationName>${cloudhub.application.name}</applicationName>
-				    	<environment>${env}</environment>
-				    	<region>${region}</region>
-				    	<workers>${workers}</workers>
-				    	<workerType>${workerType}</workerType>
-				    	<properties>
-				      		<key>value</key>
-				    	</properties>
-				    </cloudHubDeployment>
+						<uri>https://anypoint.mulesoft.com</uri>
+						<muleVersion>${app.runtime}</muleVersion>
+						<username>${anypoint.username}</username>
+						<password>${anypoint.password}</password>
+						<applicationName>${app.name}</applicationName>
+						<environment>${env}</environment>
+						<workerType>MICRO</workerType>
+						<region>us-east-2</region>
+						<workers>1</workers>
+						<objectStoreV2>true</objectStoreV2>
+						<properties>
+							<anypoint.platform.config.analytics.agent.enabled>true</anypoint.platform.config.analytics.agent.enabled>
+							<decryption.key>${decryption.key}</decryption.key>
+						</properties>
+					</cloudHubDeployment>
 				</configuration>
 			</plugin>
 		</plugins>
