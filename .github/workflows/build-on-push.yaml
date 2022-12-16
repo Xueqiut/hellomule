@@ -85,5 +85,5 @@ jobs:
          -DanypointPlatform.clientId="${{ secrets.anypoint_platform_clientId }}" \
          -DanypointPlatform.clientSecret="${{ secrets.anypoint_platform_clientSecret }}" \
          -Denv=DEV \
-         -Dsecretkey="${{ secrets.securekey }}" \
+         -Dsecurekey="${{ secrets.securekey }}" \
          -DskipTests
