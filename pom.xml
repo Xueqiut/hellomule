@@ -39,7 +39,7 @@
 						<businessGroup>${businessGroup.id}</businessGroup>
 						<connectedAppGrantType>client_credentials</connectedAppGrantType>
 						<connectedAppClientId>${connectedApp.clientId}</connectedAppClientId>
-						<connectedAppClientSecret>${connectedApp.secret}</connectedAppClientSecret>
+						<connectedAppClientSecret>${connectedApp.clientSecret}</connectedAppClientSecret>
 						<applicationName>${app.name}</applicationName>
 						<environment>${env}</environment>
 						<workerType>MICRO</workerType>
