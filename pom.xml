@@ -36,6 +36,7 @@
 					<cloudHubDeployment>
 						<uri>https://anypoint.mulesoft.com</uri>
 						<muleVersion>${app.runtime}</muleVersion>
+						<businessGroupId>${businessGroup.id}</businessGroupId>
 						<connectedAppGrantType>client_credentials</connectedAppGrantType>
 						<connectedAppClientId>${connectedApp.clientId}</connectedAppClientId>
 						<connectedAppClientSecret>${connectedApp.clientSecret}</connectedAppClientSecret>
