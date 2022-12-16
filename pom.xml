@@ -36,9 +36,10 @@
 					<cloudHubDeployment>
 						<uri>https://anypoint.mulesoft.com</uri>
 						<muleVersion>${app.runtime}</muleVersion>
+						<businessGroup>${businessGroup.id}</businessGroup>
 						<connectedAppGrantType>client_credentials</connectedAppGrantType>
-                        <connectedAppClientId>${connectedApp.clientId}</connectedAppClientId>
-                        <connectedAppClientSecret>${connectedApp.secret}</connectedAppClientSecret>
+						<connectedAppClientId>${connectedApp.clientId}</connectedAppClientId>
+						<connectedAppClientSecret>${connectedApp.secret}</connectedAppClientSecret>
 						<applicationName>${app.name}</applicationName>
 						<environment>${env}</environment>
 						<workerType>MICRO</workerType>
@@ -48,6 +49,8 @@
 						<properties>
 							<anypoint.platform.config.analytics.agent.enabled>true</anypoint.platform.config.analytics.agent.enabled>
 							<secretkey>${secretkey}</secretkey>
+							<anypoint.platform.client_id>${anypointPlatform.clientId}</anypoint.platform.client_id>
+							<anypoint.platform.client_secret>${anypointPlatform.clientSecret}</anypoint.platform.client_secret>
 						</properties>
 					</cloudHubDeployment>
 				</configuration>

@@ -79,8 +79,11 @@ jobs:
         artifactName=$(ls *.jar | head -1)
         mvn deploy -DmuleDeploy \
          -Dmule.artifact=$artifactName \
+         -DbusinessGroup.id="${{ secrets.business_group_id }}" \
          -DconnectedApp.clientId="${{ secrets.connected_app_clientid }}" \
-         -DconnectedApp.secret="${{ secrets.connected_app_secret }}" \
+         -DconnectedApp.secret="${{ secrets.connected_app_clientSecret }}" \
+         -DanypointPlatform.clientId="${{ secrets.anypoint_platform_clientId }}" \
+         -DanypointPlatform.clientSecret="${{ secrets.anypoint_platform_clientSecret }}" \
          -Denv=DEV \
          -Dsecretkey="${{ secrets.secretkey }}" \
          -DskipTests
