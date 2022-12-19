@@ -47,7 +47,7 @@
 						<workers>1</workers>
 						<objectStoreV2>true</objectStoreV2>
 						<properties>
-							<env>${env}</env>
+							<env>dev</env>
 							<anypoint.platform.config.analytics.agent.enabled>true</anypoint.platform.config.analytics.agent.enabled>
 							<secure.key>${secure.key}</secure.key>
 							<anypoint.platform.client_id>${anypointPlatform.clientId}</anypoint.platform.client_id>
