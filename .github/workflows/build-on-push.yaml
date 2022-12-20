@@ -73,18 +73,30 @@ jobs:
     - uses: actions/download-artifact@master
       with:
         name: artifacts
+        
+    - name: Add repo credentials
+      uses: s4u/maven-settings-action@v2.4.0
+      with:
+        servers: |
+          [{
+           "id": "anypoint-exchange-v3",
+           "username": "${{ secrets.mule_nexus_username }}",
+           "password": "${{ secrets.mule_nexus_password }}"
+          }]
     
     - name: Deploy to Dev
+      env:
+        business_group_id: ${{ secrets.business_group_id }}
       run: |
         artifactName=$(ls *.jar | head -1)
         mvn deploy -DmuleDeploy \
          -Dmule.artifact=$artifactName \
-         -DbusinessGroup.id="${{ secrets.business_group_id }}" \
+         -DbusinessGroup.id="$business_group_id" \
          -DconnectedApp.clientId="${{ secrets.connected_app_clientid }}" \
          -DconnectedApp.clientSecret="${{ secrets.connected_app_clientSecret }}" \
          -DanypointPlatform.clientId="${{ secrets.anypoint_platform_clientId }}" \
          -DanypointPlatform.clientSecret="${{ secrets.anypoint_platform_clientSecret }}" \
-         -Denv=Sandbox \
+         -Denv=DEV \
          -Dsecure.key="${{ secrets.secure_key }}" \
          -DskipTests
          -X
