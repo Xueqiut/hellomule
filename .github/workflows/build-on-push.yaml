@@ -93,7 +93,7 @@ jobs:
             {
               "id": "anypoint-exchange-v3",
               "username": "~~~Client~~~",
-              "password": "$connected_app_clientId~?~$connected_app_clientsecret"
+              "password": "${{ secrets.connected_app_clientId }}~?~${{ secrets.connected_app_clientSecret }}"
             }
           ]
     
@@ -104,9 +104,9 @@ jobs:
         artifactName=$(ls *.jar | head -1)
         mvn deploy -DmuleDeploy \
          -Dmule.artifact=$artifactName \
-         -DbusinessGroup.id="$business_group_id" \
-         -DconnectedApp.clientId="$connected_app_clientId" \
-         -DconnectedApp.clientSecret="$connected_app_clientSecret" \
+         -DbusinessGroup.id="${{ secrets.business_group_id }}" \
+         -DconnectedApp.clientId="${{ secrets.connected_app_clientId }}" \
+         -DconnectedApp.clientSecret="${{ secrets.connected_app_clientSecret }}" \
          -DanypointPlatform.clientId="${{ secrets.anypoint_platform_clientId }}" \
          -DanypointPlatform.clientSecret="${{ secrets.anypoint_platform_clientSecret }}" \
          -Denv=DEV \
