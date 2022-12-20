@@ -1,6 +1,6 @@
 # This workflow will build a MuleSoft project
 
-name: Build Mulesoft
+name: Build-Deploy-Mule-Apps-Dev
 
 on:
   push:
@@ -10,7 +10,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+    environment: dev
     steps:
     
     - uses: actions/checkout@v2
