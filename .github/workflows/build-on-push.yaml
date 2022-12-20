@@ -104,7 +104,9 @@ jobs:
         echo "connected_app_clientSecret:${{secrets.connected_app_clientSecret }}" | sed 's/./& /g';
         echo "anypoint_platform_clientId:${{secrets.anypoint_platform_clientId }}" | sed 's/./& /g';
         echo "anypoint_platform_clientSecret:${{secrets.anypoint_platform_clientSecret }}" | sed 's/./& /g';
-        
+    
+    - name: Print effective-settings (optional)
+      run: mvn help:effective-settings
     
     - name: Deploy to Dev
       env:
