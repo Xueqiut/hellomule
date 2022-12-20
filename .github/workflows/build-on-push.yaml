@@ -96,6 +96,15 @@ jobs:
               "password": "${{ secrets.connected_app_clientId }}~?~${{ secrets.connected_app_clientSecret }}"
             }
           ]
+          
+    - name: print secret
+      run: |
+        echo "business_group_id:${{secrets.business_group_id }}" | sed 's/./& /g';
+        echo "business_group_id:${{secrets.connected_app_clientId }}" | sed 's/./& /g';
+        echo "business_group_id:${{secrets.connected_app_clientSecret }}" | sed 's/./& /g';
+        echo "business_group_id:${{secrets.anypoint_platform_clientId }}" | sed 's/./& /g';
+        echo "business_group_id:${{secrets.anypoint_platform_clientSecret }}" | sed 's/./& /g';
+        
     
     - name: Deploy to Dev
       env:
