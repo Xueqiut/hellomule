@@ -86,42 +86,30 @@ jobs:
         servers: |
           [
             {
-              "id": "mule-enterprise",
-              "username": "${{ secrets.mule_nexus_username }}",
-              "password": "${{ secrets.mule_nexus_password }}"
-            },
-            {
               "id": "anypoint-exchange-v3",
               "username": "~~~Client~~~",
-              "password": "${{ secrets.connected_app_clientId }}~?~${{ secrets.connected_app_clientSecret }}"
+              "password": "$connected_app_clientId~?~$connected_app_clientSecret"
             }
           ]
-          
-    - name: print secret
-      run: |
-        echo "business_group_id:${{secrets.business_group_id }}" | sed 's/./& /g';
-        echo "connected_app_clientId:${{secrets.connected_app_clientId }}" | sed 's/./& /g';
-        echo "connected_app_clientSecret:${{secrets.connected_app_clientSecret }}" | sed 's/./& /g';
-        echo "anypoint_platform_clientId:${{secrets.anypoint_platform_clientId }}" | sed 's/./& /g';
-        echo "anypoint_platform_clientSecret:${{secrets.anypoint_platform_clientSecret }}" | sed 's/./& /g';
     
-    - name: Print effective-settings (optional)
+    - name: Print effective-settings (for debugging purpose only)
       run: mvn help:effective-settings
     
     - name: Deploy to Dev
       env:
         business_group_id: ${{ secrets.business_group_id }}
+        secret_key: ${{ secrets.secure_key }}
       run: |
         artifactName=$(ls *.jar | head -1)
         mvn deploy -DmuleDeploy \
          -Dmule.artifact=$artifactName \
-         -DbusinessGroup.id="${{ secrets.business_group_id }}" \
-         -DconnectedApp.clientId="${{ secrets.connected_app_clientId }}" \
-         -DconnectedApp.clientSecret="${{ secrets.connected_app_clientSecret }}" \
+         -DbusinessGroup.id="$business_group_id" \
+         -DconnectedApp.clientId="$connected_app_clientId" \
+         -DconnectedApp.clientSecret="$connected_app_clientSecret" \
          -DanypointPlatform.clientId="${{ secrets.anypoint_platform_clientId }}" \
          -DanypointPlatform.clientSecret="${{ secrets.anypoint_platform_clientSecret }}" \
          -Denv=DEV \
-         -Dsecure.key="${{ secrets.secure_key }}" \
+         -Dsecure.key="$secret_key" \
          -DskipTests \
          -e \
          -X 
