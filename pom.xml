@@ -2,11 +2,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.mycompany</groupId>
+	<groupId>ae19f38e-d59c-4a90-b1b9-37e3ed61cb30</groupId>
 	<artifactId>hellomule</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>mule-application</packaging>
-
 	<name>hellomule</name>
 
 	<properties>
@@ -33,8 +32,9 @@
 				<extensions>true</extensions>
 				<configuration>
 					<classifier>mule-application</classifier>
-					<cloudHubDeployment>
+					<cloudhub2Deployment>
 						<uri>https://anypoint.mulesoft.com</uri>
+						<provider>MC</provider>
 						<muleVersion>${app.runtime}</muleVersion>
 						<businessGroupId>${businessGroup.id}</businessGroupId>
 						<connectedAppGrantType>client_credentials</connectedAppGrantType>
@@ -46,13 +46,14 @@
 						<region>us-east-1</region>
 						<workers>1</workers>
 						<objectStoreV2>true</objectStoreV2>
+						<server>anypoint-exchange-v3</server>
 						<properties>
 							<env>dev</env>
 							<secure.key>${secure.key}</secure.key>
 							<anypoint.platform.client_id>${anypointPlatform.clientId}</anypoint.platform.client_id>
 							<anypoint.platform.client_secret>${anypointPlatform.clientSecret}</anypoint.platform.client_secret>
 						</properties>
-					</cloudHubDeployment>
+					</cloudhub2Deployment>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -196,5 +197,14 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
-
+	
+	<distributionManagement>
+        <repository>
+            <id>anypoint-exchange-v3</id>
+            <name>Exchange3 Repository</name>
+            <url>https://maven.anypoint.mulesoft.com/api/v3/organizations/${businessGroup.id}/maven
+            </url>
+            <layout>default</layout>
+        </repository>
+    </distributionManagement>
 </project>

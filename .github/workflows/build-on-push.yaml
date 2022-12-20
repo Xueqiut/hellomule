@@ -31,11 +31,13 @@ jobs:
       uses: s4u/maven-settings-action@v2.4.0
       with:
         servers: |
-          [{
-           "id": "mule-enterprise",
-           "username": "${{ secrets.mule_nexus_username }}",
-           "password": "${{ secrets.mule_nexus_password }}"
-          }]
+          [
+            {
+              "id": "mule-enterprise",
+              "username": "${{ secrets.mule_nexus_username }}",
+              "password": "${{ secrets.mule_nexus_password }}"
+            }
+          ]
     
     # securekey and env are environment specific
     - name: Build with Maven
@@ -57,6 +59,10 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    
+    env:
+      connected_app_clientId: ${{ secrets.connected_app_clientId }}
+      connected_app_clientSecret: ${{ secrets.connected_app_clientSecret }}
 
     steps:
     
@@ -78,11 +84,18 @@ jobs:
       uses: s4u/maven-settings-action@v2.4.0
       with:
         servers: |
-          [{
-           "id": "anypoint-exchange-v3",
-           "username": "${{ secrets.mule_nexus_username }}",
-           "password": "${{ secrets.mule_nexus_password }}"
-          }]
+          [
+            {
+              "id": "mule-enterprise",
+              "username": "${{ secrets.mule_nexus_username }}",
+              "password": "${{ secrets.mule_nexus_password }}"
+            },
+            {
+              "id": "anypoint-exchange-v3",
+              "username": "~~~Client~~~",
+              "password": "$connected_app_clientId~?~$connected_app_clientsecret"
+            }
+          ]
     
     - name: Deploy to Dev
       env:
@@ -92,11 +105,10 @@ jobs:
         mvn deploy -DmuleDeploy \
          -Dmule.artifact=$artifactName \
          -DbusinessGroup.id="$business_group_id" \
-         -DconnectedApp.clientId="${{ secrets.connected_app_clientid }}" \
-         -DconnectedApp.clientSecret="${{ secrets.connected_app_clientSecret }}" \
+         -DconnectedApp.clientId="$connected_app_clientId" \
+         -DconnectedApp.clientSecret="$connected_app_clientSecret" \
          -DanypointPlatform.clientId="${{ secrets.anypoint_platform_clientId }}" \
          -DanypointPlatform.clientSecret="${{ secrets.anypoint_platform_clientSecret }}" \
          -Denv=DEV \
          -Dsecure.key="${{ secrets.secure_key }}" \
          -DskipTests
-         -X
