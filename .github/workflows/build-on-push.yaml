@@ -84,6 +84,6 @@ jobs:
          -DconnectedApp.clientSecret="${{ secrets.connected_app_clientSecret }}" \
          -DanypointPlatform.clientId="${{ secrets.anypoint_platform_clientId }}" \
          -DanypointPlatform.clientSecret="${{ secrets.anypoint_platform_clientSecret }}" \
-         -Denv=DEV \
+         -Denv=Sandbox \
          -Dsecure.key="${{ secrets.secure_key }}" \
          -DskipTests
