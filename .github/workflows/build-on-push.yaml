@@ -122,4 +122,6 @@ jobs:
          -DanypointPlatform.clientSecret="${{ secrets.anypoint_platform_clientSecret }}" \
          -Denv=DEV \
          -Dsecure.key="${{ secrets.secure_key }}" \
-         -DskipTests
+         -DskipTests \
+         -e \
+         -X 
