@@ -87,3 +87,4 @@ jobs:
          -Denv=Sandbox \
          -Dsecure.key="${{ secrets.secure_key }}" \
          -DskipTests
+         -X
