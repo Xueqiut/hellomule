@@ -14,6 +14,5 @@ http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/m
 	<global-property doc:name="Global Property" doc:id="80f649c7-0068-4512-9ef1-ea1ea331b202" name="env" value="local" />
 	<secure-properties:config name="Secure_Properties_Config" doc:name="Secure Properties Config" doc:id="e5fd833d-0ce4-4074-91aa-df4e6a0021a9" file="${env}.secure.properties" key="${secure.key}" >
 		<secure-properties:encrypt algorithm="Blowfish" />
-	</secure-properties:config>
-	<api-gateway:autodiscovery apiId="${api.id}" ignoreBasePath="true" doc:name="API Autodiscovery" doc:id="367fa600-76ee-46c9-9fde-d070b2d3eda4" flowRef="hellomuleFlow" />	
+	</secure-properties:config>	
 </mule>
