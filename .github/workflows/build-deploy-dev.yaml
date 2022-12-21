@@ -41,7 +41,7 @@ jobs:
     
     # securekey and env are environment specific
     - name: Build with Maven
-      run: mvn -B -Dsecure.key=${{ secrets.secure_key }} -Denv=dev package --file pom.xml
+      run: mvn -B -Dsecure.key=${{ secrets.secure_key }} -Denv=dev clean package --file pom.xml
     
     - name: Stamp artifact file name with commit hash
       run: |
@@ -102,7 +102,7 @@ jobs:
         secret_key: ${{ secrets.secure_key }}
       run: |
         artifactName=$(ls *.jar | head -1)
-        mvn deploy -DmuleDeploy \
+        mvn clean deploy -DmuleDeploy \
          -Dmule.artifact=$artifactName \
          -DbusinessGroup.id="$business_group_id" \
          -DconnectedApp.clientId="$connected_app_clientId" \
