@@ -41,7 +41,7 @@ jobs:
     
     # securekey and env are environment specific
     - name: Build with Maven
-      run: mvn -B -Dsecure.key=${{ secrets.secure_key }} -Denv=dev install package --file pom.xml
+      run: mvn -B -Dsecure.key=${{ secrets.secure_key }} -Denv=dev package --file pom.xml
     
     - name: Stamp artifact file name with commit hash
       run: |
